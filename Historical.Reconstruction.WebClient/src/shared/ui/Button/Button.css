@@ -1,0 +1,38 @@
+.ui-button {
+  display: inline-flex;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border: 0;
+  border-radius: 16px;
+  color: #fff;
+  background: var(--primary, #171717);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.8px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+.ui-button:hover:not(:disabled) {
+  background: var(--primary-hover, #373737);
+}
+
+.ui-button:active:not(:disabled) {
+  background: var(--primary-active, #b4b4b4);
+}
+
+.ui-button:disabled {
+  background: var(--primary-active, #b4b4b4);
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-button {
+    transition: none;
+  }
+}

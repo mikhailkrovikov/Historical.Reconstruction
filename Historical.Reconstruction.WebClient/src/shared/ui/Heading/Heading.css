@@ -1,0 +1,41 @@
+.ui-heading {
+  display: flex;
+  width: 100%;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ui-heading__left {
+  min-width: 0;
+  flex: 1;
+}
+
+.ui-heading__left h2 {
+  margin: 0;
+  overflow: hidden;
+  color: var(--primary, #171717);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: -1.6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-heading__button {
+  flex: none;
+  margin-left: auto;
+}
+
+@media (max-width: 620px) {
+  .ui-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .ui-heading__button {
+    width: 100%;
+  }
+}

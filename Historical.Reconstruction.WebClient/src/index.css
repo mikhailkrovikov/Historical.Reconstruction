@@ -12,6 +12,11 @@
   --border-strong: #c8beae;
   --accent: #915b30;
   --accent-soft: #eee1d3;
+  --primary: #171717;
+  --primary-hover: #373737;
+  --primary-active: #b4b4b4;
+  --secondary: #606060;
+  --link: #0946ed;
   --serif: Georgia, "Times New Roman", serif;
 }
 
