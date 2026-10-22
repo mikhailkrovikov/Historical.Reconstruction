@@ -95,7 +95,11 @@ export function FindsPage() {
         <Heading
           leftContent="Каталог"
           buttonLabel="Добавить находку"
-          buttonProps={{ onClick: () => navigate('/finds/new') }}
+          buttonProps={{
+            onClick: () => navigate('/finds/new'),
+            showLeftIcon: false,
+            showRightIcon: false,
+        }}
         />
 
         <section className="catalog__toolbar" aria-label="Фильтры каталога">

@@ -15,7 +15,7 @@
 .ui-heading__left h2 {
   margin: 0;
   overflow: hidden;
-  color: var(--primary, #171717);
+  color: var(--color-primary);
   font-size: 32px;
   font-weight: 600;
   line-height: 40px;
