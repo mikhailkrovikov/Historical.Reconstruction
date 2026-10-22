@@ -78,8 +78,7 @@ export function FindDetailsPage() {
             <img src={primaryImage.url} alt={primaryImage.caption || find.name} />
           ) : (
             <div className="find-details__image-placeholder">
-              <span aria-hidden="true">◇</span>
-              <p>Изображение пока не добавлено</p>
+              <Icon name="image" className="find-details__placeholder-icon" />
             </div>
           )}
         </section>

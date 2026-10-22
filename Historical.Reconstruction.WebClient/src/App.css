@@ -515,14 +515,12 @@
   text-align: center;
 }
 
-.find-details__image-placeholder span {
-  font-size: 64px;
-  line-height: 1;
-}
-
-.find-details__image-placeholder p {
-  margin: 12px 0 0;
-  font-size: 16px;
+.ui-icon.find-card__placeholder-icon,
+.ui-icon.find-details__placeholder-icon {
+  width: 56px;
+  height: 56px;
+  mask-size: 56px 56px;
+  -webkit-mask-size: 56px 56px;
 }
 
 .find-details__actions {

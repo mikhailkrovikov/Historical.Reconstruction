@@ -1,10 +1,11 @@
 import type { CSSProperties, HTMLAttributes } from 'react'
 import arrowUpRight from './arrow-up-right.svg'
 import bow from './bow.svg'
+import image from './image.svg'
 import mapPinned from './map-pinned.svg'
 import './Icon.css'
 
-export type IconName = 'bow' | 'arrow-up-right' | 'map-pinned'
+export type IconName = 'bow' | 'arrow-up-right' | 'image' | 'map-pinned'
 
 export interface IconProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> {
   name: IconName
@@ -14,6 +15,7 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'childr
 const iconSources: Record<IconName, string> = {
   bow,
   'arrow-up-right': arrowUpRight,
+  image,
   'map-pinned': mapPinned,
 }
 
