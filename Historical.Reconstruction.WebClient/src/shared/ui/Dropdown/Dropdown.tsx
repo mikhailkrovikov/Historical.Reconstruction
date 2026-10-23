@@ -49,6 +49,7 @@ export function Dropdown({
   const [highlightedIndex, setHighlightedIndex] = useState(-1)
   const selectedValue = value ?? uncontrolledValue
   const selectedOption = options.find((option) => option.value === selectedValue)
+  const isPlaceholder = selectedValue === ''
 
   useEffect(() => {
     function handlePointerDown(event: PointerEvent) {
@@ -169,7 +170,11 @@ export function Dropdown({
         }}
         onKeyDown={handleKeyDown}
       >
-        <span className="ui-dropdown__value">
+        <span
+          className={`ui-dropdown__value${
+            isPlaceholder ? ' ui-dropdown__value--placeholder' : ''
+          }`}
+        >
           {selectedOption?.label ?? placeholder}
         </span>
         <img src={chevronDown} alt="" aria-hidden="true" />

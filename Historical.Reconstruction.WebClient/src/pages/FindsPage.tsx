@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import searchIcon from '../assets/search.svg'
 import { FindCard } from '../features/finds/components/FindCard.tsx'
 import { useFinds } from '../features/finds/hooks/useFinds.ts'
 import {
@@ -10,6 +9,7 @@ import {
 import type { FindFilters } from '../features/finds/types.ts'
 import { Dropdown, type DropdownOption } from '../shared/ui/Dropdown'
 import { Heading } from '../shared/ui/Heading'
+import { Search } from '../shared/ui/Search'
 
 const PAGE_SIZE = 12
 
@@ -99,20 +99,16 @@ export function FindsPage() {
             onClick: () => navigate('/finds/new'),
             showLeftIcon: false,
             showRightIcon: false,
-        }}
+          }}
         />
 
         <section className="catalog__toolbar" aria-label="Фильтры каталога">
-          <label className="catalog__search">
-            <img src={searchIcon} alt="" aria-hidden="true" />
-            <input
-              type="search"
-              value={query}
-              placeholder="Поиск"
-              aria-label="Поиск находок"
-              onChange={(event) => setQuery(event.target.value)}
-            />
-          </label>
+          <Search
+            value={query}
+            placeholder="Поиск"
+            aria-label="Поиск находок"
+            onValueChange={setQuery}
+          />
 
           <div className="catalog__dropdowns">
             <Dropdown

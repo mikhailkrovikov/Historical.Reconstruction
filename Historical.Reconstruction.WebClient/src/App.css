@@ -17,41 +17,6 @@
   margin: 24px 0;
 }
 
-.catalog__search {
-  display: flex;
-  height: 56px;
-  min-width: 0;
-  align-items: center;
-  gap: 8px;
-  padding: 18px 16px;
-  border-radius: 16px;
-  background: var(--color-white);
-}
-
-.catalog__search img {
-  flex: none;
-}
-
-.catalog__search input {
-  width: 100%;
-  min-width: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  color: var(--color-primary);
-  background: transparent;
-  font: inherit;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.8px;
-}
-
-.catalog__search input::placeholder {
-  color: var(--color-primary);
-  opacity: 1;
-}
-
 .catalog__dropdowns {
   display: flex;
   gap: 8px;
@@ -226,6 +191,17 @@
   overflow: hidden;
   border-radius: 16px;
   background: var(--color-white);
+}
+
+.find-card:hover {
+  box-shadow:
+    0 0 0 1.5px var(--color-white),
+    inset 0 0 0 1.5px var(--color-white),
+    0 4px 40px rgb(0 0 0 / 15%);
+}
+
+.find-card:hover h2 {
+  color: var(--color-link);
 }
 
 .find-card__media {

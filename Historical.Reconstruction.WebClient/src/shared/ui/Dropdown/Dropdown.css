@@ -45,6 +45,10 @@
   white-space: nowrap;
 }
 
+.ui-dropdown:not(.ui-dropdown--open) .ui-dropdown__value--placeholder {
+  color: var(--color-secondary);
+}
+
 .ui-dropdown__trigger img {
   flex: none;
 }
