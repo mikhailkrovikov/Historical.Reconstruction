@@ -12,21 +12,26 @@ export const demoRegions: Region[] = locations.map((location, index) => {
 export const demoCategories: FindCategory[] = categories.map((name, index) => ({
   id: `category-${index + 1}`, name, parentId: null,
 }))
+const photos: Record<string, { file: string; caption: string }> = {
+  'sheet-2': { file: 'trefoil-oland.png', caption: 'Трёхлистная фибула, остров Эланд. Фото: Kalmar läns museum.' },
+  'sheet-4': { file: 'ring-pin.png', caption: 'Плащевая фибула типа «игла с кольцом».' },
+}
 const finds: HistoricalFind[] = cards.map(card => {
   const centuries = [...card.dating.matchAll(/(\d+)\s*век/g)].map(match => Number(match[1]))
   const knownDate = centuries.length > 0
+  const photo = photos[card.id]
   return {
     id: card.id,
     name: card.name,
     regionId: `region-${locations.indexOf(`${card.country}|${card.location}`) + 1}`,
     findCategoryId: `category-${categories.indexOf(card.type) + 1}`,
-    dateFromYear: knownDate ? (Math.min(...centuries) - 1) * 100 : 0,
+    dateFromYear: knownDate ? (Math.min(...centuries) - 1) * 100 + 1 : 0,
     dateToYear: knownDate ? Math.max(...centuries) * 100 : 0,
     datingLabel: card.dating,
     dateUnknown: !knownDate,
     description: `${card.description}\n\nМатериал: ${card.material}.\nМесто находки: ${card.country}, ${card.location}.\n\nИсточник: ${card.sourceText}`,
     sourceUrl: card.sourceUrl,
-    images: [],
+    images: photo ? [{ id: `${card.id}-image`, url: `${import.meta.env.BASE_URL}catalog/${photo.file}`, caption: photo.caption, sortOrder: 0 }] : [],
   }
 })
 

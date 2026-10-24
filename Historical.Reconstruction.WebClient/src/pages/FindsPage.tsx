@@ -7,7 +7,7 @@ import {
   useCategories,
   useRegions,
 } from '../features/finds/hooks/useReferenceData.ts'
-import type { FindFilters } from '../features/finds/types.ts'
+import type { FindFilters, HistoricalFind } from '../features/finds/types.ts'
 import { Dropdown, type DropdownOption } from '../shared/ui/Dropdown'
 import { Heading } from '../shared/ui/Heading'
 
@@ -22,7 +22,7 @@ export function FindsPage() {
   const regions = useRegions()
   const [query, setQuery] = useState('')
   const [categoryId, setCategoryId] = useState('')
-  const [regionId, setRegionId] = useState('')
+  const [country, setCountry] = useState('')
   const [period, setPeriod] = useState('')
   const finds = useMemo(() => data?.items ?? [], [data?.items])
   const categoryOptions = useMemo<DropdownOption[]>(
@@ -35,16 +35,17 @@ export function FindsPage() {
     ],
     [categories.data],
   )
-  const regionOptions = useMemo<DropdownOption[]>(
+  const countryOptions = useMemo<DropdownOption[]>(
     () => [
-      { value: '', label: 'Регион' },
-      ...(regions.data?.map((region) => ({
-        value: region.id,
-        label: [region.country, region.region, region.city]
-          .filter(Boolean)
-          .join(', '),
-      })) ?? []),
+      { value: '', label: 'Страна' },
+      ...[...new Set(regions.data?.map(region => region.country) ?? [])]
+        .sort((a, b) => a.localeCompare(b, 'ru'))
+        .map(name => ({ value: name, label: name })),
     ],
+    [regions.data],
+  )
+  const countriesByRegion = useMemo(
+    () => new Map(regions.data?.map(region => [region.id, region.country]) ?? []),
     [regions.data],
   )
   const regionLabels = useMemo(
@@ -66,16 +67,16 @@ export function FindsPage() {
         find.name.toLocaleLowerCase('ru').includes(normalizedQuery) ||
         find.description.toLocaleLowerCase('ru').includes(normalizedQuery)
       const matchesCategory = !categoryId || find.findCategoryId === categoryId
-      const matchesRegion = !regionId || find.regionId === regionId
+      const matchesCountry = !country || countriesByRegion.get(find.regionId) === country
 
       return (
         matchesQuery &&
         matchesCategory &&
-        matchesRegion &&
-        (!period || (!find.dateUnknown && matchesPeriod(find.dateFromYear, find.dateToYear, period)))
+        matchesCountry &&
+        matchesCentury(find, period)
       )
     })
-  }, [categoryId, finds, period, query, regionId])
+  }, [categoryId, country, countriesByRegion, finds, period, query])
 
   function changePage(page: number) {
     const nextParams = new URLSearchParams(searchParams)
@@ -121,18 +122,18 @@ export function FindsPage() {
             />
             <Dropdown
               className="catalog__filter"
-              options={regionOptions}
-              value={regionId}
-              placeholder="Регион"
-              aria-label="Фильтр по региону"
-              onChange={setRegionId}
+              options={countryOptions}
+              value={country}
+              placeholder="Страна"
+              aria-label="Фильтр по стране"
+              onChange={setCountry}
             />
             <Dropdown
               className="catalog__filter"
               options={PERIOD_OPTIONS}
               value={period}
-              placeholder="Датировка"
-              aria-label="Фильтр по датировке"
+              placeholder="Век"
+              aria-label="Фильтр по веку"
               onChange={setPeriod}
             />
           </div>
@@ -214,25 +215,26 @@ export function FindsPage() {
 }
 
 const PERIOD_OPTIONS: DropdownOption[] = [
-  { value: '', label: 'Датировка' },
+  { value: '', label: 'Век' },
   { value: 'bc', label: 'До н. э.' },
-  { value: '1-5', label: 'I-V вв.' },
-  { value: '6-10', label: 'VI-X вв.' },
-  { value: '11-15', label: 'XI-XV вв.' },
-  { value: '16-21', label: 'XVI-XXI вв.' },
+  ...Array.from({ length: 21 }, (_, index) => ({
+    value: String(index + 1),
+    label: `${index + 1} век`,
+  })),
 ]
 
-function matchesPeriod(fromYear: number, toYear: number, period: string) {
-  if (!period) return true
-  if (period === 'bc') return fromYear < 0
+function matchesCentury(find: HistoricalFind, century: string) {
+  if (!century) return true
+  if (find.dateUnknown) return false
+  if (century === 'bc') return find.dateFromYear < 0
 
-  const [fromCentury, toCentury] = period.split('-').map(Number)
-  const filterFromYear = (fromCentury - 1) * 100 + 1
-  const filterToYear = toCentury * 100
+  // Preserve explicitly listed centuries from the source (e.g. 8 and 11, not 9–10).
+  const listed = [...(find.datingLabel ?? '').matchAll(/(\d+)\s*век/g)]
+  if (listed.length) return listed.some(match => match[1] === century)
 
-  return toYear >= filterFromYear && fromYear <= filterToYear
+  const value = Number(century)
+  return find.dateToYear >= (value - 1) * 100 + 1 && find.dateFromYear <= value * 100
 }
-
 function FindsSkeleton() {
   return (
     <section className="finds-grid" aria-label="Загрузка находок" aria-busy="true">
