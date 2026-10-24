@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => {
   const apiTarget = env.VITE_API_TARGET || 'http://localhost:5145'
 
   return {
+    base: mode === 'demo' ? '/Historical.Reconstruction/' : '/',
     plugins: [react()],
     server: {
       proxy: {
