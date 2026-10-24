@@ -39,7 +39,7 @@ export function FindCard({ find, regionLabel }: FindCardProps) {
           </span>
           <span aria-hidden="true">•</span>
           <span className="find-card__centuries">
-            {formatPeriodAsCenturies(find.dateFromYear, find.dateToYear)}
+            {find.datingLabel ?? formatPeriodAsCenturies(find.dateFromYear, find.dateToYear)}
           </span>
         </p>
       </div>

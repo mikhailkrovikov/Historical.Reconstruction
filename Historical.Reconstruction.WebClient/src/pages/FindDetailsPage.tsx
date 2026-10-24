@@ -53,7 +53,7 @@ export function FindDetailsPage() {
         <header className="find-details__hero">
           <p className="catalog__eyebrow">Карточка находки</p>
           <p className="find-details__period">
-            {formatPeriod(find.dateFromYear, find.dateToYear)}
+            {find.datingLabel ?? formatPeriod(find.dateFromYear, find.dateToYear)}
           </p>
           <h1>{find.name}</h1>
         </header>
@@ -72,7 +72,7 @@ export function FindDetailsPage() {
         <div className="find-details__content">
           <section className="find-details__description">
             <h2>О находке</h2>
-            <p>{find.description}</p>
+            <p style={{ whiteSpace: 'pre-line' }}>{find.description}</p>
           </section>
 
           <aside className="find-details__facts" aria-label="Сведения о находке">
@@ -80,7 +80,7 @@ export function FindDetailsPage() {
             <dl>
               <div>
                 <dt>Период</dt>
-                <dd>{formatPeriod(find.dateFromYear, find.dateToYear)}</dd>
+                <dd>{find.datingLabel ?? formatPeriod(find.dateFromYear, find.dateToYear)}</dd>
               </div>
               <div>
                 <dt>ID записи</dt>

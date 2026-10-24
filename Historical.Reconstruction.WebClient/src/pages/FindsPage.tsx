@@ -72,7 +72,7 @@ export function FindsPage() {
         matchesQuery &&
         matchesCategory &&
         matchesRegion &&
-        matchesPeriod(find.dateFromYear, find.dateToYear, period)
+        (!period || (!find.dateUnknown && matchesPeriod(find.dateFromYear, find.dateToYear, period)))
       )
     })
   }, [categoryId, finds, period, query, regionId])

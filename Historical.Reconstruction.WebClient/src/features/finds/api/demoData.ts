@@ -1,39 +1,34 @@
 import type { CreateFindRequest, FindCategory, FindFilters, FindImage, HistoricalFind, PagedResponse, Region } from '../types'
 import { HttpError } from '../../../shared/api/httpClient'
+import cards from './catalogCards.json'
 
-export const demoRegions: Region[] = [
-  { id: 'region-1', country: 'Россия', region: 'Новгородская область', city: 'Великий Новгород' },
-  { id: 'region-2', country: 'Россия', region: 'Республика Крым', city: null },
-  { id: 'region-3', country: 'Россия', region: 'Тульская область', city: null },
-]
-export const demoCategories: FindCategory[] = [
-  { id: 'category-1', name: 'Керамика', parentId: null },
-  { id: 'category-2', name: 'Украшения', parentId: null },
-  { id: 'category-3', name: 'Орудия труда', parentId: null },
-]
-const examples = [
-  ['Глиняный сосуд', -500, -300, 'category-1', 'region-2', 'vessel'],
-  ['Бронзовая фибула', 100, 300, 'category-2', 'region-2', 'brooch'],
-  ['Каменный наконечник', -3000, -2000, 'category-3', 'region-3', 'arrow'],
-  ['Керамический кувшин', 900, 1100, 'category-1', 'region-1', 'vessel'],
-  ['Височное кольцо', 1000, 1200, 'category-2', 'region-1', 'brooch'],
-  ['Кремнёвое остриё', -5000, -3500, 'category-3', 'region-3', 'arrow'],
-  ['Сосуд с орнаментом', -800, -600, 'category-1', 'region-2', 'vessel'],
-  ['Металлическая застёжка', 700, 900, 'category-2', 'region-1', 'brooch'],
-  ['Наконечник стрелы', -1200, -800, 'category-3', 'region-3', 'arrow'],
-  ['Фрагмент амфоры', -200, 100, 'category-1', 'region-2', 'vessel'],
-  ['Кольцевая подвеска', 1200, 1400, 'category-2', 'region-1', 'brooch'],
-  ['Каменный скребок', -6000, -4000, 'category-3', 'region-3', 'arrow'],
-  ['Небольшой глиняный горшок', 1300, 1500, 'category-1', 'region-1', 'vessel'],
-  ['Бронзовое украшение', -600, -400, 'category-2', 'region-2', 'brooch'],
-  ['Кремнёвый резец', -4000, -2500, 'category-3', 'region-3', 'arrow'],
-] as const
-const finds: HistoricalFind[] = examples.map(([name, from, to, category, region, picture], index) => ({
-  id: `demo-${index + 1}`, name, dateFromYear: from, dateToYear: to,
-  findCategoryId: category, regionId: region, sourceUrl: null,
-  description: 'Учебная запись для демонстрации интерфейса. Название, датировка и место условные и не описывают документированную археологическую находку.',
-  images: [{ id: `image-${index + 1}`, url: `${import.meta.env.BASE_URL}demo/${picture}.svg`, caption: 'Условная иллюстрация', sortOrder: 0 }],
+// Snapshot of the «Карточки» tab. Updating the spreadsheet does not change the site automatically.
+const locations = [...new Set(cards.map(card => `${card.country}|${card.location}`))]
+const categories = [...new Set(cards.map(card => card.type))]
+export const demoRegions: Region[] = locations.map((location, index) => {
+  const [country, region] = location.split('|')
+  return { id: `region-${index + 1}`, country, region, city: null }
+})
+export const demoCategories: FindCategory[] = categories.map((name, index) => ({
+  id: `category-${index + 1}`, name, parentId: null,
 }))
+const finds: HistoricalFind[] = cards.map(card => {
+  const centuries = [...card.dating.matchAll(/(\d+)\s*век/g)].map(match => Number(match[1]))
+  const knownDate = centuries.length > 0
+  return {
+    id: card.id,
+    name: card.name,
+    regionId: `region-${locations.indexOf(`${card.country}|${card.location}`) + 1}`,
+    findCategoryId: `category-${categories.indexOf(card.type) + 1}`,
+    dateFromYear: knownDate ? (Math.min(...centuries) - 1) * 100 : 0,
+    dateToYear: knownDate ? Math.max(...centuries) * 100 : 0,
+    datingLabel: card.dating,
+    dateUnknown: !knownDate,
+    description: `${card.description}\n\nМатериал: ${card.material}.\nМесто находки: ${card.country}, ${card.location}.\n\nИсточник: ${card.sourceText}`,
+    sourceUrl: card.sourceUrl,
+    images: [],
+  }
+})
 
 export function getDemoFinds(filters: FindFilters): PagedResponse<HistoricalFind> {
   const pageSize = Math.max(1, filters.pageSize)

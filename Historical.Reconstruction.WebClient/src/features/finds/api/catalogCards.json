@@ -1,0 +1,98 @@
+[
+  {
+    "id": "sheet-2",
+    "type": "Фибула",
+    "country": "Швеция",
+    "location": "остров Эланд, Оттенбю",
+    "dating": "9 век, 10 век, 11 век",
+    "material": "Бронза, Железо",
+    "name": "Трёхлистная фибула",
+    "description": "Трехлистная фибула датируется эпохой викингов 800–1100 гг. и найдена в Оттенбю, в приходе Ось на Эланде.",
+    "sourceText": "https://digitaltmuseum.org/0210215103879/spanne",
+    "sourceUrl": "https://digitaltmuseum.org/0210215103879/spanne"
+  },
+  {
+    "id": "sheet-3",
+    "type": "Фибула",
+    "country": "Швеция",
+    "location": "Культорп, Ланна",
+    "dating": "9 век",
+    "material": "Бронза, Медь",
+    "name": "Трёхлистная фибула",
+    "description": "Трехлистная фибула из бронзы IX века в боррестиле. Длины рожков от центра — 47 мм, ширина 32 мм. Держатель для булавки сохранён, но самой булавки нет. Остались остатки ткани.",
+    "sourceText": "https://digitaltmuseum.org/021028590965/spanne",
+    "sourceUrl": "https://digitaltmuseum.org/021028590965/spanne"
+  },
+  {
+    "id": "sheet-4",
+    "type": "Фибула",
+    "country": "Норвегия",
+    "location": "Сёмна, Хельгеланн, курган Мардале",
+    "dating": "9 век, 10 век",
+    "material": "Медь, Бронза",
+    "name": "Плащевая фибула типа \"игла с кольцом\"",
+    "description": "Плащевая фибула типа \"игла с кольцом\" из мужского погребения в 12 метровой лодке под курганом в Мардале (Сёмна, Хельгеланн). Материл - сплав на основе меди, длина - 10,5 см. Хранится в музее Осло.",
+    "sourceText": "Книга (стр. 75-76) RINGSPENNEN OG KAPPEN\nKulturelle møter, politiske symboler og sentraliseringsprosesser i Norge ca. 800-950, https://digitaltmuseum.org/0210211998836/spenne",
+    "sourceUrl": "https://digitaltmuseum.org/0210211998836/spenne"
+  },
+  {
+    "id": "sheet-5",
+    "type": "Хвостовик",
+    "country": "Швеция",
+    "location": "Кальмар, Эланд, Мёрбюлянга, Мёкклебю, Гордби",
+    "dating": "9 век, 10 век, 11 век",
+    "material": "Бронза, Железо",
+    "name": "Хвостовик для ремня/пояса",
+    "description": "Фурнитура для конца пояса/ремня датируется викингским периодом 800–1100 гг. и была найдена в песчаном карьере Гёрдби, приход Гёрдби, Эланд.",
+    "sourceText": "https://digitaltmuseum.org/0210215229417/andbeslag",
+    "sourceUrl": "https://digitaltmuseum.org/0210215229417/andbeslag"
+  },
+  {
+    "id": "sheet-6",
+    "type": "Хвостовик",
+    "country": "Исландия",
+    "location": "Калдархефди, 801-Селфосси, Гримснес-ог-Графнингшреппур, Гримснес",
+    "dating": "10 век, 11 век",
+    "material": "Бронза",
+    "name": "Хвостовик для ремня/пояса",
+    "description": "Наконечник из бронзы в форме язычка, длиной 5,3 см, толщиной 2,3 мм, объемом 3 мм.",
+    "sourceText": "https://sarpur.is/en/collection/item/322563/",
+    "sourceUrl": "https://sarpur.is/en/collection/item/322563/"
+  },
+  {
+    "id": "sheet-7",
+    "type": "Пряжка",
+    "country": "Исландия",
+    "location": "Калдархефди, 801-Селфосси, Гримснес-ог-Графнингшреппур, Гримснес",
+    "dating": "10 век, 11 век",
+    "material": "Бронза",
+    "name": "Пряжка для ремня",
+    "description": "Бронзовое поясное кольцо с железным шипом, сделанное из бронзы.",
+    "sourceText": "https://sarpur.is/en/collection/item/322551/",
+    "sourceUrl": "https://sarpur.is/en/collection/item/322551/"
+  },
+  {
+    "id": "sheet-8",
+    "type": "Кольцо",
+    "country": "Норвегия",
+    "location": "Хедмарк, Станге",
+    "dating": "8 век, 11 век",
+    "material": "Серебро",
+    "name": "Серебряное кольцо с узлом",
+    "description": "Серебрянное кольцо с круглым декором и узлом. Ширина 11мм, диаметр 25 мм. Находится в музее \"Археолог округа Хедмарк.\"",
+    "sourceText": "https://nmf.nu/museum/funn/gjenstander/gjenstander-for-1537/solvring-med-knute/",
+    "sourceUrl": "https://nmf.nu/museum/funn/gjenstander/gjenstander-for-1537/solvring-med-knute/"
+  },
+  {
+    "id": "sheet-9",
+    "type": "Браслет",
+    "country": "Норвегия",
+    "location": "Слеммедал (Slemmedal) в районе Лиен (Lien), Гримстад, округ Агдер",
+    "dating": "Не указано, но эпоха викингов",
+    "material": "Золото",
+    "name": "Золотой браслет",
+    "description": "Массивный, хорошо сохранившийся овальный браслет из золота, ср. с браслетом из поселения Vuluskatten, Стринда, Южный Трёнделаг, упом. Альмгрeном: The Viking, табл. с. 198, но тонкая проволока между двумя толстыми концами отсутствует. Орнамент на ромбовидной застёжке здесь простой, в виде вдавленных кругов. Концы слегка фасетированы. Размеры концов ок. 0,8 см, внешние размеры 8,9 x 5,9 см. Вес 110,219 г.",
+    "sourceText": "https://digitaltmuseum.org/0210212007890/armring",
+    "sourceUrl": "https://digitaltmuseum.org/0210212007890/armring"
+  }
+]

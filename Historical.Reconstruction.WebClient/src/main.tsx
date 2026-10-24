@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
       <Router>
         {import.meta.env.MODE === 'demo' && (
           <p role="note" style={{ margin: 0, padding: '12px 20px', textAlign: 'center', background: '#f4e8ce', color: '#382f23' }}>
-            Демоверсия: условные данные. Созданные записи и загруженные картинки исчезнут после обновления страницы.
+            Демоверсия: данные из таблицы «Карточки». Созданные записи и загруженные картинки исчезнут после обновления страницы.
           </p>
         )}
         <App />

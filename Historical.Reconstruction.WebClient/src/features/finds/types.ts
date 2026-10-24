@@ -10,6 +10,8 @@ export interface HistoricalFind {
   name: string
   regionId: string
   findCategoryId: string
+  datingLabel?: string
+  dateUnknown?: boolean
   dateFromYear: number
   dateToYear: number
   description: string
