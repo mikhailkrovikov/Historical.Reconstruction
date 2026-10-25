@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Icon } from '../../../shared/ui/Icon'
 import type { HistoricalFind } from '../types.ts'
 import { formatPeriodAsCenturies } from '../lib/formatPeriod.ts'
 
@@ -16,7 +17,7 @@ export function FindCard({ find, regionLabel }: FindCardProps) {
         {primaryImage ? (
           <img src={primaryImage.url} alt={primaryImage.caption || find.name} />
         ) : (
-          <span aria-hidden="true">Архив</span>
+          <Icon name="image" className="find-card__placeholder-icon" />
         )}
       </Link>
       {find.sourceUrl && (

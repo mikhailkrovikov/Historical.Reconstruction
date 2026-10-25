@@ -1,2 +1,2 @@
-export { Button } from './Button.tsx'
-export type { ButtonProps } from './Button.tsx'
+export { Button, PrimaryButton, SecondaryButton } from './Button.tsx'
+export type { ButtonProps, ButtonVariant } from './Button.tsx'
