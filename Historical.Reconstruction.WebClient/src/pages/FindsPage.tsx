@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { FindCard } from '../features/finds/components/FindCard.tsx'
 import { useFinds } from '../features/finds/hooks/useFinds.ts'
 import {
@@ -14,7 +14,6 @@ import { Search } from '../shared/ui/Search'
 const PAGE_SIZE = 12
 
 export function FindsPage() {
-  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const filters = getFilters(searchParams)
   const { data, error, isError, isPending, refetch } = useFinds(filters)
@@ -92,15 +91,7 @@ export function FindsPage() {
   return (
     <main className="catalog">
       <div className="catalog__shell">
-        <Heading
-          leftContent="Каталог"
-          buttonLabel="Добавить находку"
-          buttonProps={{
-            onClick: () => navigate('/finds/new'),
-            showLeftIcon: false,
-            showRightIcon: false,
-          }}
-        />
+        <Heading leftContent="Каталог" showButton={false} />
 
         <section className="catalog__toolbar" aria-label="Фильтры каталога">
           <Search
